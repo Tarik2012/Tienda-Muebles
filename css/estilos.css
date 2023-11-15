@@ -22,7 +22,9 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1.6rem;
   line-height: 2;
-  zoom: 90%;
+  zoom: 60%;
+  padding-right: 30rem; /* Relleno en el lado derecho */
+  padding-left: 30rem;
 }
 h1,
 h2,
@@ -39,6 +41,20 @@ h2 {
 h3 {
   font-size: 2rem;
 }
+
+.btn {
+  background-color: rgb(59, 196, 88);
+  display: block;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 1rem;
+  transition: background-color 0.3s ease-out;
+}
+.btn:hover {
+  background-color: rgb(30, 158, 5);
+}
+
 /* UTILIDADES */
 .text-center {
   text-align: center;
@@ -146,23 +162,61 @@ display inline y bloc
 .contenido-principal {
   padding-top: 4rem;
 }
-
+.listado-productos {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  /* column-gap: 2rem;
+  row-gap: 2rem; */
+  gap: 2rem;
+}
+.producto:nth-child(1) {
+  /* grid-column: 1/7; Esto es lo mismo que tenemos abajo */
+  grid-column-start: 1;
+  grid-column-end: 7;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.producto:nth-child(1) img {
+  height: 43rem;
+  width: 100%;
+  object-fit: cover;
+}
+.producto:nth-child(2) {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.producto:nth-child(3) {
+  grid-column-start: 4;
+  grid-column-end: 7;
+}
+.producto:nth-child(4) {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.producto:nth-child(5) {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+.producto:nth-child(6) {
+  grid-column-start: 5;
+  grid-column-end: 7;
+}
 .producto {
   background-color: rgb(125, 111, 9);
 }
 .texto-producto {
   text-align: center;
   color: #fff;
+  padding: 2rem;
 }
 .texto-producto h3 {
-  margin: 0 0 0.5 rem 0;
+  margin: 0 0 0.5rem 0;
 }
 .texto-producto p {
-  margin: 0;
+  margin: 0.5rem;
 }
 .texto-producto .precio {
   font-size: 2, 8rem;
   font-weight: 900;
 }
-.texto-producto a {
-}
+/* darle estilos al boton */
