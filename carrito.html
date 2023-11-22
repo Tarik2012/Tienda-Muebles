@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="estilos3.css" />
+  </head>
+  <body>
+    <div id="carrito">
+      <h2>Carrito de Compras</h2>
+      <ul id="lista-carrito"></ul>
+      <p>Total: <span id="total">0</span> EUR</p>
+    </div>
+
+    <div id="productos">
+      <div class="producto" data-nombre="Producto 1" data-precio="500">
+        <h3>Producto 1</h3>
+        <p>500 EUR</p>
+        <button class="agregar-carrito">Agregar al Carrito</button>
+      </div>
+
+      <div class="producto" data-nombre="Producto 2" data-precio="500">
+        <h3>Producto 2</h3>
+        <p>500 EUR</p>
+        <button class="agregar-carrito">Agregar al Carrito</button>
+      </div>
+
+      <!-- Agrega más productos según sea necesario -->
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const carrito = document.getElementById("carrito");
+        const listaCarrito = document.getElementById("lista-carrito");
+        const total = document.getElementById("total");
+        const productos = document.getElementById("productos");
+
+        productos.addEventListener("click", agregarProducto);
+
+        function agregarProducto(e) {
+          if (e.target.classList.contains("agregar-carrito")) {
+            const producto = e.target.parentElement;
+            const nombre = producto.dataset.nombre;
+            const precio = Number(producto.dataset.precio);
+
+            agregarAlCarrito(nombre, precio);
+          }
+        }
+
+        function agregarAlCarrito(nombre, precio) {
+          const li = document.createElement("li");
+          li.innerHTML = `${nombre} - ${precio} EUR <button class="eliminar-item">Eliminar</button>`;
+          listaCarrito.appendChild(li);
+
+          calcularTotal();
+        }
+
+        listaCarrito.addEventListener("click", eliminarItem);
+
+        function eliminarItem(e) {
+          if (e.target.classList.contains("eliminar-item")) {
+            const item = e.target.parentElement;
+            listaCarrito.removeChild(item);
+
+            calcularTotal();
+          }
+        }
+
+        function calcularTotal() {
+          let totalPrecio = 0;
+          const items = listaCarrito.querySelectorAll("li");
+
+          items.forEach((item) => {
+            const precio = Number(item.textContent.replace(/[^0-9]/g, ""));
+            totalPrecio += precio;
+          });
+
+          total.textContent = totalPrecio;
+        }
+      });
+    </script>
+  </body>
+</html>
